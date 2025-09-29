@@ -118,9 +118,9 @@ class _ClientListScreenState extends State<ClientListScreen> {
               Client client = clientProvider.clients[index];
               final remainingDays = client.endDate.difference(DateTime.now()).inDays;
               final tileColor = remainingDays <= 0
-                  ? Colors.red.withOpacity(0.1)
+                  ? Colors.red.withAlpha(25)
                   : remainingDays <= 7
-                      ? Colors.orange.withOpacity(0.1)
+                      ? Colors.orange.withAlpha(25)
                       : null;
               final statusText = remainingDays <= 0 ? 'Expirado' : '$remainingDays días restantes';
               final statusColor = remainingDays <= 7 ? Colors.red : Colors.green;
