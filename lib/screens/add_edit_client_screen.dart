@@ -102,6 +102,8 @@ class _AddEditClientScreenState extends State<AddEditClientScreen> {
               TextFormField(
                 initialValue: _name,
                 decoration: const InputDecoration(labelText: 'Nombre'),
+                autofocus: false,
+                textInputAction: TextInputAction.next,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Por favor, ingrese un nombre.';
@@ -115,6 +117,8 @@ class _AddEditClientScreenState extends State<AddEditClientScreen> {
               TextFormField(
                 initialValue: _lastName,
                 decoration: const InputDecoration(labelText: 'Apellido'),
+                autofocus: false,
+                textInputAction: TextInputAction.next,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Por favor, ingrese un apellido.';
@@ -128,6 +132,8 @@ class _AddEditClientScreenState extends State<AddEditClientScreen> {
               TextFormField(
                 initialValue: _username,
                 decoration: const InputDecoration(labelText: 'Usuario'),
+                autofocus: false,
+                textInputAction: TextInputAction.next,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Por favor, ingrese un nombre de usuario.';
@@ -154,6 +160,8 @@ class _AddEditClientScreenState extends State<AddEditClientScreen> {
                   ),
                 ),
                 obscureText: !_isPasswordVisible,
+                autofocus: false,
+                textInputAction: TextInputAction.next,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Por favor, ingrese una contraseña.';
@@ -168,6 +176,8 @@ class _AddEditClientScreenState extends State<AddEditClientScreen> {
                 initialValue: _phone,
                 decoration: const InputDecoration(labelText: 'Teléfono'),
                 keyboardType: TextInputType.phone,
+                autofocus: false,
+                textInputAction: TextInputAction.next,
                 onSaved: (value) {
                   _phone = value!;
                 },
@@ -175,6 +185,8 @@ class _AddEditClientScreenState extends State<AddEditClientScreen> {
               TextFormField(
                 initialValue: _referredBy,
                 decoration: const InputDecoration(labelText: 'Referido por'),
+                autofocus: false,
+                textInputAction: TextInputAction.next,
                 onSaved: (value) {
                   _referredBy = value;
                 },
@@ -234,6 +246,8 @@ class _AddEditClientScreenState extends State<AddEditClientScreen> {
                 initialValue: _months.toString(),
                 decoration: const InputDecoration(labelText: 'Meses'),
                 keyboardType: TextInputType.number,
+                autofocus: false,
+                textInputAction: TextInputAction.next,
                 validator: (value) {
                   if (value!.isEmpty || int.tryParse(value) == null) {
                     return 'Por favor, ingrese un número válido de meses.';
@@ -248,6 +262,8 @@ class _AddEditClientScreenState extends State<AddEditClientScreen> {
                 initialValue: _price.toString(),
                 decoration: const InputDecoration(labelText: 'Precio'),
                 keyboardType: TextInputType.number,
+                autofocus: false,
+                textInputAction: TextInputAction.done,
                 validator: (value) {
                   if (value!.isEmpty || double.tryParse(value) == null) {
                     return 'Por favor, ingrese un precio válido.';

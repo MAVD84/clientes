@@ -9,7 +9,9 @@ This document outlines the plan and features for a Flutter application designed 
 *   **Client Management:** Add, edit, delete, and view client information.
 *   **Local Database:** All data will be stored locally using `sqflite`.
 *   **Modern UI:** A clean, user-friendly interface built with Material Design 3 components, `google_fonts`, and a theme that supports both light and dark modes.
-*   **State Management:** The `provider` package will be used for efficient state management, particularly for theme switching.
+*   **State Management:** The `provider` package will be used for efficient state management.
+*   **Expiration Notifications:** The app will schedule local notifications to remind the user about client subscriptions that are about to expire.
+*   **Client Import/Export:** Functionality to import clients in bulk from CSV and to export all clients to a CSV file.
 
 ## Data Model
 
@@ -33,7 +35,8 @@ lib/
 |-- models/
 |   `-- client_model.dart
 |-- helpers/
-|   `-- database_helper.dart
+|   |-- database_helper.dart
+|   `-- notification_helper.dart
 |-- providers/
 |   |-- client_provider.dart
 |   `-- theme_provider.dart
@@ -43,13 +46,10 @@ lib/
 `-- main.dart
 ```
 
-## Current Action Plan
+## Current Action Plan: Export Clients to File
 
-1.  **DONE** - Create `blueprint.md`.
-2.  **DOING** - Add dependencies to `pubspec.yaml`.
-3.  **TODO** - Create the `Client` data model.
-4.  **TODO** - Implement the `DatabaseHelper` for database operations.
-5.  **TODO** - Create a `ClientProvider` to manage the client list state.
-6.  **TODO** - Implement the main `ClientListScreen` to display clients.
-7.  **TODO** - Implememnt the `AddEditClientScreen` for creating and updating clients.
-8.  **TODO** - Set up the main application entry point with themes and providers.
+1.  **DONE** - Update `blueprint.md` with the new export feature plan.
+2.  **DOING** - Add dependencies (`share_plus`, `path_provider`) to `pubspec.yaml`.
+3.  **TODO** - Add an "Export" button to the `ClientListScreen`.
+4.  **TODO** - Implement the CSV generation and sharing logic in `ClientProvider`.
+5.  **TODO** - Provide user feedback during and after the export process.
