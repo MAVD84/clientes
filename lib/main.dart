@@ -11,7 +11,7 @@ import 'theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await NotificationHelper.init();
+  // await NotificationHelper.init(); // Temporarily disabled for debugging
   runApp(
     MultiProvider(
       providers: [
@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    _rescheduleNotifications();
+    // _rescheduleNotifications(); // Temporarily disabled for debugging
   }
 
   Future<void> _rescheduleNotifications() async {
