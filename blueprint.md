@@ -46,10 +46,10 @@ lib/
 `-- main.dart
 ```
 
-## Current Action Plan: Export Clients to File
+## Completed Action Plan: Export Clients to File
 
 1.  **DONE** - Update `blueprint.md` with the new export feature plan.
-2.  **DOING** - Add dependencies (`share_plus`, `path_provider`) to `pubspec.yaml`.
-3.  **TODO** - Add an "Export" button to the `ClientListScreen`.
-4.  **TODO** - Implement the CSV generation and sharing logic in `ClientProvider`.
-5.  **TODO** - Provide user feedback during and after the export process.
+2.  **DONE** - Add dependencies (`share_plus`, `path_provider`) to `pubspec.yaml`.
+3.  **DONE** - Add an "Export" button to the `ClientListScreen`.
+4.  **DONE** - Implement the CSV generation and sharing logic in `ClientProvider`.
+5.  **DONE** - Provide user feedback during and after the export process.

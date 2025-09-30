@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/client_provider.dart';
-import '../helpers/csv_helper.dart';
-import '../models/client_model.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -12,19 +10,12 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  Future<void> _exportAndShowSnackBar(List<Client> clients) async {
-    final path = await CsvHelper.exportToCsv(clients);
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('CSV exportado a: $path')),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     final clientProvider = Provider.of<ClientProvider>(context);
     final clients = clientProvider.clients;
+    final theme = Theme.of(context);
 
     final activeClients = clients.where((c) => c.endDate.isAfter(DateTime.now())).toList();
     final expiredClients = clients.where((c) => c.endDate.isBefore(DateTime.now())).toList();
@@ -45,10 +36,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         children: [
           _buildMetricCard(
             context,
-            title: 'Ingresos mensuales',
+            title: 'Ingresos Mensuales (MRR)',
             value: '\$${monthlyRecurringRevenue.toStringAsFixed(2)}',
             icon: Icons.attach_money,
-            color: Colors.green,
+            color: theme.colorScheme.primary, // Themed color
           ),
           const SizedBox(height: 16),
           _buildMetricCard(
@@ -56,7 +47,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             title: 'Clientes Activos',
             value: activeClients.length.toString(),
             icon: Icons.person,
-            color: Colors.blue,
+            color: theme.colorScheme.secondary, // Themed color
           ),
           const SizedBox(height: 16),
           _buildMetricCard(
@@ -64,7 +55,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             title: 'Clientes Expirados',
             value: expiredClients.length.toString(),
             icon: Icons.person_off,
-            color: Colors.red,
+            color: theme.colorScheme.error, // Themed color
           ),
           const SizedBox(height: 16),
           _buildMetricCard(
@@ -72,7 +63,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             title: 'Nuevos Clientes (Este Mes)',
             value: newClientsThisMonth.length.toString(),
             icon: Icons.person_add,
-            color: Colors.purple,
+            color: theme.colorScheme.tertiary, // Themed color
           ),
           const SizedBox(height: 16),
           _buildMetricCard(
@@ -80,7 +71,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             title: 'Clientes Referidos',
             value: referredClients.length.toString(),
             icon: Icons.group,
-            color: Colors.orange,
+            color: theme.colorScheme.inversePrimary, // Themed color
           ),
         ],
       ),
@@ -88,9 +79,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   Widget _buildMetricCard(BuildContext context, {required String title, required String value, required IconData icon, required Color color}) {
+    final theme = Theme.of(context);
     return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
@@ -103,12 +93,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 children: [
                   Text(
                     title,
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: theme.textTheme.titleMedium,
                   ),
                   const SizedBox(height: 4),
                   Text(
                     value,
-                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold, color: color),
+                    style: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold, color: color),
                   ),
                 ],
               ),

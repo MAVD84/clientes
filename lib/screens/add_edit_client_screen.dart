@@ -19,6 +19,7 @@ class _AddEditClientScreenState extends State<AddEditClientScreen> {
   late String _lastName;
   late String _username;
   late String _password;
+  late String? _url;
   late String _phone;
   late DateTime _startDate;
   late DateTime _endDate;
@@ -35,6 +36,7 @@ class _AddEditClientScreenState extends State<AddEditClientScreen> {
       _lastName = widget.client!.lastName;
       _username = widget.client!.username;
       _password = widget.client!.password;
+      _url = widget.client!.url;
       _phone = widget.client!.phone;
       _startDate = widget.client!.startDate;
       _endDate = widget.client!.endDate;
@@ -46,6 +48,7 @@ class _AddEditClientScreenState extends State<AddEditClientScreen> {
       _lastName = '';
       _username = '';
       _password = '';
+      _url = '';
       _phone = '';
       _startDate = DateTime.now();
       _endDate = DateTime.now().add(const Duration(days: 30));
@@ -64,6 +67,7 @@ class _AddEditClientScreenState extends State<AddEditClientScreen> {
         lastName: _lastName,
         username: _username,
         password: _password,
+        url: _url,
         phone: _phone,
         startDate: _startDate,
         endDate: _endDate,
@@ -170,6 +174,15 @@ class _AddEditClientScreenState extends State<AddEditClientScreen> {
                 },
                 onSaved: (value) {
                   _password = value!;
+                },
+              ),
+              TextFormField(
+                initialValue: _url,
+                decoration: const InputDecoration(labelText: 'URL'),
+                autofocus: false,
+                textInputAction: TextInputAction.next,
+                onSaved: (value) {
+                  _url = value;
                 },
               ),
               TextFormField(

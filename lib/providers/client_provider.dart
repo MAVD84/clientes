@@ -154,6 +154,7 @@ class ClientProvider with ChangeNotifier {
 
       await file.writeAsString(csv);
 
+      // ignore: deprecated_member_use
       await Share.shareXFiles([XFile(path)],
           text: 'Aquí está la lista de clientes exportados.');
 

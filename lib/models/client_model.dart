@@ -4,6 +4,7 @@ class Client {
   String lastName;
   String username;
   String password;
+  String? url; // Added URL field
   String phone;
   DateTime startDate;
   DateTime endDate;
@@ -17,6 +18,7 @@ class Client {
     required this.lastName,
     required this.username,
     required this.password,
+    this.url,
     required this.phone,
     required this.startDate,
     required this.endDate,
@@ -32,6 +34,7 @@ class Client {
       'lastName': lastName,
       'username': username,
       'password': password,
+      'url': url, // Added to map
       'phone': phone,
       'startDate': startDate.toIso8601String(),
       'endDate': endDate.toIso8601String(),
@@ -48,6 +51,7 @@ class Client {
       lastName: map['lastName'],
       username: map['username'],
       password: map['password'],
+      url: map['url'], // Added from map
       phone: map['phone'],
       startDate: DateTime.parse(map['startDate']),
       endDate: DateTime.parse(map['endDate']),

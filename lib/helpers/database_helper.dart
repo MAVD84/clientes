@@ -20,7 +20,7 @@ class DatabaseHelper {
     String path = join(await getDatabasesPath(), 'iptv_clients.db');
     return await openDatabase(
       path,
-      version: 2,
+      version: 3, // Incremented version
       onCreate: _onCreate,
       onUpgrade: _onUpgrade,
     );
@@ -34,6 +34,7 @@ class DatabaseHelper {
         lastName TEXT,
         username TEXT,
         password TEXT,
+        url TEXT, // Added url column
         phone TEXT,
         startDate TEXT,
         endDate TEXT,
@@ -47,6 +48,9 @@ class DatabaseHelper {
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
     if (oldVersion < 2) {
       await db.execute('ALTER TABLE clients ADD COLUMN referredBy TEXT');
+    }
+    if (oldVersion < 3) {
+      await db.execute('ALTER TABLE clients ADD COLUMN url TEXT');
     }
   }
 
