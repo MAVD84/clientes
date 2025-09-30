@@ -158,7 +158,7 @@ class _ClientListScreenState extends State<ClientListScreen> {
                           return DrawerHeader(
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: const AssetImage('assets/images/icon.png'),
+                                image: const NetworkImage('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=2070&auto=format&fit=crop'),
                                 fit: BoxFit.cover,
                                 colorFilter: ColorFilter.mode(
                                   const Color(0x99000000),
