@@ -1,4 +1,3 @@
-import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -6,12 +5,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'providers/client_provider.dart';
 import 'providers/activation_provider.dart'; // Import the new provider
 import 'screens/client_list_screen.dart';
-import 'helpers/notification_helper.dart';
 import 'theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await NotificationHelper.init(); // Temporarily disabled for debugging
   runApp(
     MultiProvider(
       providers: [
@@ -23,28 +20,8 @@ void main() async {
   );
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-    // _rescheduleNotifications(); // Temporarily disabled for debugging
-  }
-
-  Future<void> _rescheduleNotifications() async {
-    await Future.delayed(const Duration(milliseconds: 100));
-    developer.log('Rescheduling all notifications...', name: 'my_app.main');
-    if (mounted) {
-      final clientProvider = Provider.of<ClientProvider>(context, listen: false);
-      await clientProvider.rescheduleAllNotifications();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {

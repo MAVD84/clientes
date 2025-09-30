@@ -10,7 +10,6 @@ import 'package:share_plus/share_plus.dart';
 
 import '../models/client_model.dart';
 import '../helpers/database_helper.dart';
-import '../helpers/notification_helper.dart';
 
 class ClientProvider with ChangeNotifier {
   List<Client> _clients = [];
@@ -31,32 +30,17 @@ class ClientProvider with ChangeNotifier {
   Future<void> addClient(Client client) async {
     final newId = await DatabaseHelper().addClient(client);
     client.id = newId;
-    await NotificationHelper.scheduleExpirationNotifications(client);
     await loadClients();
   }
 
   Future<void> updateClient(Client client) async {
     await DatabaseHelper().updateClient(client);
-    await NotificationHelper.scheduleExpirationNotifications(client);
     await loadClients();
   }
 
   Future<void> deleteClient(int id) async {
     await DatabaseHelper().deleteClient(id);
-    await NotificationHelper.cancelNotificationsForClient(id);
     await loadClients();
-  }
-
-  Future<void> rescheduleAllNotifications() async {
-    final clients = await DatabaseHelper().getClients();
-    developer.log(
-        'Loaded ${clients.length} clients to reschedule notifications.',
-        name: 'my_app.client_provider');
-    for (var client in clients) {
-      developer.log('Scheduling notifications for client: ${client.name}',
-          name: 'my_app.client_provider');
-      await NotificationHelper.scheduleExpirationNotifications(client);
-    }
   }
 
   Future<String> importClientsFromCsv() async {
